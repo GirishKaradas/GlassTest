@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "2331960935",
+    "project_id": "glasstest-2f126",
+    "storage_bucket": "glasstest-2f126.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2331960935:android:2a27eb4ffa695d6f56d6c2",
+        "android_client_info": {
+          "package_name": "com.example.android.glass.glasstest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "2331960935-eg8gn1644q6p2g92gbn4la514pm95luh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVGCS1ZPRM6ibtmx-tGMd4c7aMS5k3LEQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "2331960935-eg8gn1644q6p2g92gbn4la514pm95luh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
