@@ -123,11 +123,11 @@ public class VideoCallActivity extends BaseActivity implements  Session.SessionL
         Log.i(LOG_TAG, "Stream Received");
 
         if (mSubscriber == null) {
-        /*    mSubscriber = new Subscriber.Builder(this, stream).build();
+            mSubscriber = new Subscriber.Builder(this, stream).build();
             mSession.subscribe(mSubscriber);
             mSubscriberViewContainer.addView(mSubscriber.getView());
 
-         */
+
         }    }
 
     @Override
@@ -135,11 +135,11 @@ public class VideoCallActivity extends BaseActivity implements  Session.SessionL
         Log.i(LOG_TAG, "Stream Dropped");
 
         if (mSubscriber != null) {
-            /*
+
             mSubscriber = null;
             mSubscriberViewContainer.removeAllViews();
 
-             */
+
 
         }
     }
@@ -169,7 +169,6 @@ public class VideoCallActivity extends BaseActivity implements  Session.SessionL
     public boolean onGesture(GlassGestureDetector.Gesture gesture) {
 
         if (gesture == GlassGestureDetector.Gesture.SWIPE_DOWN){
-            ref2.setValue("");
             mSession.disconnect();
         }
         return super.onGesture(gesture);
