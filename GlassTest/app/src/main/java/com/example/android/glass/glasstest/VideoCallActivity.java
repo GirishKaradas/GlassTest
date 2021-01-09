@@ -2,13 +2,19 @@ package com.example.android.glass.glasstest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.example.glass.ui.GlassGestureDetector;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.opentok.android.Session;
 import com.opentok.android.Stream;
@@ -18,14 +24,18 @@ import com.opentok.android.Subscriber;
 import com.opentok.android.OpentokError;
 import androidx.annotation.NonNull;
 import android.Manifest;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 import android.opengl.GLSurfaceView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -49,7 +59,8 @@ public class VideoCallActivity extends BaseActivity implements  Session.SessionL
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference reference, ref1, ref2;
-    private StorageReference storageReference;
+    private StorageReference storageReference, storageRef1;
+    private ImageView imageView;
 
 
 
@@ -58,16 +69,42 @@ public class VideoCallActivity extends BaseActivity implements  Session.SessionL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_call);
 
+        imageView = findViewById(R.id.activity_video_call_imageview);
+
         requestPermissions();
         firebaseDatabase = FirebaseDatabase.getInstance();
         reference= firebaseDatabase.getReference();
         ref1= reference.child("calls");
         ref2 = reference.child("session");
+
         Date now = new Date();
         android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
         String key=ref1.push().getKey();
         ref1.child(key).setValue(now);
         ref2.setValue(key);
+        storageReference = FirebaseStorage.getInstance().getReference().child("images").child(key);
+
+        try {
+            File file = File.createTempFile("image", "jpg");
+            storageReference.getFile(file)
+                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                            imageView.setImageBitmap(bitmap);
+                            imageView.setVisibility(View.VISIBLE);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e("CallActivity", "Error");
+                }
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
