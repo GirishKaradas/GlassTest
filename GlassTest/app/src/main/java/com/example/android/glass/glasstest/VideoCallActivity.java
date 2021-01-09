@@ -50,6 +50,8 @@ public class VideoCallActivity extends BaseActivity implements  Session.SessionL
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference reference, ref1, ref2;
     private StorageReference storageReference;
+                    private ImageView imageView;
+
 
 
 
