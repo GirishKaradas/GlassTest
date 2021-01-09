@@ -68,6 +68,28 @@ public class VideoCallActivity extends BaseActivity implements  Session.SessionL
         String key=ref1.push().getKey();
         ref1.child(key).setValue(now);
         ref2.setValue(key);
+            storageReference = FirebaseStorage.getInstance().getReference().child("images").child(key);
+
+        try {
+            File file = File.createTempFile("image", "jpg");
+            storageReference.getFile(file)
+                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                            imageView.setImageBitmap(bitmap);
+                            imageView.setVisibility(View.VISIBLE);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e("CallActivity", "Error");
+                }
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
