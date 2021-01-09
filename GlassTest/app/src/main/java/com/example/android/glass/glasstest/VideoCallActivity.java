@@ -24,6 +24,7 @@ import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 import android.opengl.GLSurfaceView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -62,9 +63,10 @@ public class VideoCallActivity extends BaseActivity implements  Session.SessionL
         reference= firebaseDatabase.getReference();
         ref1= reference.child("calls");
         ref2 = reference.child("session");
-        String time=new SimpleDateFormat("HH:mm", Locale.ENGLISH).format(new Date());
+        Date now = new Date();
+        android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
         String key=ref1.push().getKey();
-        ref1.child(key).setValue(time);
+        ref1.child(key).setValue(now);
         ref2.setValue(key);
     }
 
@@ -116,6 +118,7 @@ public class VideoCallActivity extends BaseActivity implements  Session.SessionL
     @Override
     public void onDisconnected(Session session) {
         Log.i(LOG_TAG, "Session Disconnected");
+        ref2.setValue("");
     }
 
     @Override
@@ -123,12 +126,19 @@ public class VideoCallActivity extends BaseActivity implements  Session.SessionL
         Log.i(LOG_TAG, "Stream Received");
 
         if (mSubscriber == null) {
+
             mSubscriber = new Subscriber.Builder(this, stream).build();
+            mSubscriber.setSubscribeToAudio(true);
+            mSubscriber.setSubscribeToVideo(true);
             mSession.subscribe(mSubscriber);
+            if (stream.hasAudio()){
+                Log.e("CallActivity", "Audio is Enabled");
+            }else {
+                Log.e("CallActivity", "Audio is Disabled");
+            }
             mSubscriberViewContainer.addView(mSubscriber.getView());
-
-
-        }    }
+        }
+    }
 
     @Override
     public void onStreamDropped(Session session, Stream stream) {
@@ -138,9 +148,6 @@ public class VideoCallActivity extends BaseActivity implements  Session.SessionL
 
             mSubscriber = null;
             mSubscriberViewContainer.removeAllViews();
-
-
-
         }
     }
 
