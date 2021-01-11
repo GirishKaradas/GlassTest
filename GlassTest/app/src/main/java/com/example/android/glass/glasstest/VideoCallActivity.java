@@ -156,7 +156,6 @@ public class VideoCallActivity extends BaseActivity implements  Session.SessionL
         }
         @Override
         public void onBindViewHolder(@NonNull ImageAdapter.ViewHolder holder, final int position) {
-
             Picasso.get().load(list.get(position).getUrl()).into(holder.imageView);
         }
         @Override
