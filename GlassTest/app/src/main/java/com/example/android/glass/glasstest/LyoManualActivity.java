@@ -144,10 +144,10 @@ public class LyoManualActivity extends BaseActivity {
                     MenuActivity.EXTRA_MENU_ITEM_DEFAULT_VALUE);
             switch (id) {
                 case R.id.bWebrtc:
-                    startActivity(new Intent(this.getApplicationContext(), VideoCallActivity.class));
+                //    startActivity(new Intent(this.getApplicationContext(), VideoCallActivity.class));
                     break;
                 case R.id.bAgora:
-                    startActivity(new Intent(this.getApplicationContext(), AgoraActivity.class));
+                  //  startActivity(new Intent(this.getApplicationContext(), AgoraActivity.class));
                     break;
             }
         }
