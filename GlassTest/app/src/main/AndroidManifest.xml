@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".LyoManualActivity"></activity>
         <activity android:name=".AgoraActivity" />
         <activity android:name=".WebCallActivity" />
         <activity android:name=".VideoCallActivity" />

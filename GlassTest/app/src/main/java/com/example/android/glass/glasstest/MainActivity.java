@@ -76,8 +76,8 @@ public class MainActivity extends BaseActivity {
                     startActivity(new Intent(this.getApplicationContext(), ManualActivity.class));
                     break;
                 case R.id.bMaintenance:
-                    selectedOption = getString(R.string.maintenance);
-               //     startActivity(new Intent(this.getApplicationContext(), ManualActivity.class));
+                    selectedOption = getString(R.string.lyo_manual);
+                    startActivity(new Intent(this.getApplicationContext(), LyoManualActivity.class));
                     break;
                 case R.id.bMonitor:
                     selectedOption = getString(R.string.monitor);

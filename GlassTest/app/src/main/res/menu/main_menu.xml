@@ -17,7 +17,7 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:id="@+id/bManual" android:icon="@drawable/ic_manual" android:title="@string/manual"/>
-  <item android:id="@+id/bMaintenance" android:icon="@drawable/ic_maintenance" android:title="@string/maintenance"/>
+  <item android:id="@+id/bMaintenance" android:icon="@drawable/ic_maintenance" android:title="@string/lyo_manual"/>
   <item android:id="@+id/bMonitor" android:icon="@drawable/ic_monitor" android:title="@string/monitor"/>
   <item android:id="@+id/bVideoCall" android:icon="@drawable/ic_videocall" android:title="@string/video_call"/>
 </menu>

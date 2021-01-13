@@ -220,6 +220,8 @@ public class VideoCallActivity extends BaseActivity implements  Session.SessionL
     @Override
     public void onDisconnected(Session session) {
         Log.i(LOG_TAG, "Session Disconnected");
+        mSubscriber.destroy();
+        mPublisher.destroy();
         ref_session.setValue("");
     }
 
@@ -228,7 +230,6 @@ public class VideoCallActivity extends BaseActivity implements  Session.SessionL
         Log.i(LOG_TAG, "Stream Received");
 
         if (mSubscriber == null) {
-
             mSubscriber = new Subscriber.Builder(this, stream).build();
             mSubscriber.setSubscribeToAudio(true);
             mSubscriber.setSubscribeToVideo(true);

@@ -35,7 +35,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/activity_call_rcView"
         android:visibility="gone"
-        android:layout_margin="@dimen/glass_card_margin"/>
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
