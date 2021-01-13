@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,6 +43,7 @@ public class LyoLayoutFragment extends BaseFragment{
             final ImageView ivIcon = view.findViewById(R.id.list_final_ivIcon);
             final TextView tvDesc = view.findViewById(R.id.list_final_tvDesc);
             final ImageView imageView = view.findViewById(R.id.list_final_imageview);
+            final LinearLayout layout = view.findViewById(R.id.list_final_layout);
 
             tvStep.setText(getArguments().getString("step", ""));
             tvTitle.setText(getArguments().getString("title", ""));
@@ -53,18 +55,22 @@ public class LyoLayoutFragment extends BaseFragment{
             switch (type){
                 case "normal":
                     ivIcon.setImageResource(R.drawable.ic_action);
+                    layout.setBackgroundColor(getResources().getColor(R.color.color_normal));
                     break;
 
                 case "critical":
                     ivIcon.setImageResource(R.drawable.ic_warning);
+                    layout.setBackgroundColor(getResources().getColor(R.color.color_critical));
                     break;
 
                 case "camera":
                     ivIcon.setImageResource(R.drawable.ic_camera);
+                    layout.setBackgroundColor(getResources().getColor(R.color.color_camera));
                     break;
 
                 case "info":
                     ivIcon.setImageResource(R.drawable.ic_info);
+                    layout.setBackgroundColor(getResources().getColor(R.color.color_info));
                     break;
             }
         }
