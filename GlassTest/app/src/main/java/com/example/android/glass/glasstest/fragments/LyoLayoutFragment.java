@@ -15,17 +15,18 @@ import com.squareup.picasso.Picasso;
 
 public class LyoLayoutFragment extends BaseFragment{
 
-    public static LyoLayoutFragment newInstance(int id, String step, String type, String title, String url, String desc) {
+    public static LyoLayoutFragment newInstance(double id, String step, String type, String title, String url, String desc) {
 
         final LyoLayoutFragment fragment =new LyoLayoutFragment();
 
         final Bundle args = new Bundle();
-        args.putInt("id", id);
+        args.putDouble("id", id);
         args.putString("step", step);
         args.putString("type", type);
         args.putString("title", title);
         args.putString("url", url);
         args.putString("desc", desc);
+        fragment.setArguments(args);
 
         return fragment;
     }
@@ -45,8 +46,9 @@ public class LyoLayoutFragment extends BaseFragment{
             tvStep.setText(getArguments().getString("step", ""));
             tvTitle.setText(getArguments().getString("title", ""));
             tvDesc.setText(getArguments().getString("desc", ""));
-            Picasso.get().load("https:"+getArguments().getString("url")).into(imageView);
-
+            if (!getArguments().getString("url").equals("")){
+                Picasso.get().load("https:"+getArguments().getString("url")).into(imageView);
+            }
             String type = getArguments().getString("type");
             switch (type){
                 case "normal":

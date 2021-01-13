@@ -2,7 +2,7 @@ package com.example.android.glass.glasstest;
 
 public class DataLyo {
 
-    private int id;
+    private double id;
     private String step;
     private String type;
     private String title;
@@ -12,7 +12,7 @@ public class DataLyo {
     public DataLyo() {
     }
 
-    public DataLyo(int id, String step, String type, String title, String url, String desc) {
+    public DataLyo(double id, String step, String type, String title, String url, String desc) {
         this.id = id;
         this.step = step;
         this.type = type;
@@ -21,11 +21,11 @@ public class DataLyo {
         this.desc = desc;
     }
 
-    public int getId() {
+    public double getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(double id) {
         this.id = id;
     }
 

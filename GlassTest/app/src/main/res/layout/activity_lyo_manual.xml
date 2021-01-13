@@ -25,6 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:tabBackground="@drawable/page_indicator_selector"
         app:tabGravity="center"
+        android:visibility="gone"
         app:tabIndicatorHeight="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,6 +11,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.contentful.java.cda.CDAArray;
 import com.contentful.java.cda.CDAAsset;
@@ -48,7 +49,7 @@ public class LyoManualActivity extends BaseActivity {
     private final CDAClient client = CDAClient
             .builder()
             .setToken(ACCESS_TOKEN)
-            .setToken(SPACE_ID)
+            .setSpace(SPACE_ID)
             .setEnvironment("master")
             .build();
 
@@ -86,7 +87,7 @@ public class LyoManualActivity extends BaseActivity {
 
                                 final CDAEntry entry = (CDAEntry) cdaResource;
 
-                                int id = entry.getField("id");
+                                double id = entry.getField("id");
                                 String step = entry.getField("step");
                                 String type = entry.getField("type");
                                 String title = entry.getField("title");
@@ -97,6 +98,7 @@ public class LyoManualActivity extends BaseActivity {
                                 }
                                 String desc = entry.getField("desc");
 
+                                Log.e("This", step);
                                 arrayList.add(arrayList.size(), new DataLyo(id, step, type, title, url, desc));
                             }
 
@@ -105,11 +107,12 @@ public class LyoManualActivity extends BaseActivity {
                             Collections.sort(arrayList, new Comparator<DataLyo>() {
                                 @Override
                                 public int compare(DataLyo lyo, DataLyo lyo1) {
-                                    return Integer.valueOf(lyo.getId()).compareTo(Integer.valueOf(lyo1.getId()));
+                                    return Double.valueOf(lyo.getId()).compareTo(Double.valueOf(lyo1.getId()));
                                 }
                             });
                             for (int i=0; i<arrayList.size(); i++){
                                 DataLyo dataLyo = arrayList.get(i);
+                                Log.e("This 2", dataLyo.getStep());
                                 fragments.add(LyoLayoutFragment.newInstance(dataLyo.getId(), dataLyo.getStep(), dataLyo.getType(), dataLyo.getTitle(), dataLyo.getUrl(), dataLyo.getDesc()));
                             }
                             screenSliderPagerAdapter.notifyDataSetChanged();
