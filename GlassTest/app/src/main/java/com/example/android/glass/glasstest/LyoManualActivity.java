@@ -12,6 +12,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.contentful.java.cda.CDAArray;
 import com.contentful.java.cda.CDAAsset;
@@ -39,6 +41,7 @@ public class LyoManualActivity extends BaseActivity {
     private ViewPager viewPager;
     private TabLayout indicator;
     private ArrayList<DataLyo> arrayList = new ArrayList<>();
+    private TextView textView;
 
     private final String ACCESS_TOKEN="tbYF8iyCGtF0CNgErPrRdU3LelybCwSXGWl5jA7nRoQ";
     private final String SPACE_ID= "kjy57u6y7jdo";
@@ -62,8 +65,10 @@ public class LyoManualActivity extends BaseActivity {
 
         viewPager = findViewById(R.id.activity_lyo_viewpager);
         indicator = findViewById(R.id.activity_lyo_indicator);
+        textView = findViewById(R.id.activity_lyo_tvPage);
         arrayList = new ArrayList<>();
         indicator.setupWithViewPager(viewPager, true);
+
     }
 
     @Override
@@ -127,9 +132,25 @@ public class LyoManualActivity extends BaseActivity {
         switch (gesture) {
             case TAP:
                 //    fragments.get(viewPager.getCurrentItem()).onSingleTapUp();
-                Intent intent = new Intent(LyoManualActivity.this, MenuActivity.class);
+           /*     Intent intent = new Intent(LyoManualActivity.this, MenuActivity.class);
                 intent.putExtra(MENU_KEY, R.menu.menu_call);
                 startActivityForResult(intent, REQUEST_CODE );
+                
+            */
+                if(viewPager.getCurrentItem()==0){
+                    Toast.makeText(this, "Step 0", Toast.LENGTH_SHORT).show();
+                }else if(viewPager.getCurrentItem()==5){
+                    Intent intent = new Intent(LyoManualActivity.this, CameraActivity.class);
+                    intent.putExtra("step", 5);
+                    startActivity(intent);
+                }else if(viewPager.getCurrentItem()==8){
+                    Intent intent = new Intent(LyoManualActivity.this, CameraActivity.class);
+                    intent.putExtra("step", 8);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(this, "Nothing", Toast.LENGTH_SHORT).show();
+                }
+                
                 return true;
             default:
                 return super.onGesture(gesture);

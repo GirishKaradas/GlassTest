@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="4dp"
+    android:padding="8dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -12,7 +13,6 @@
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/list_final_layout"
         android:orientation="horizontal"
-        android:padding="4dp"
         app:layout_constraintLeft_toLeftOf="parent">
 
         <TextView
@@ -20,12 +20,12 @@
             android:layout_height="wrap_content"
             android:id="@+id/list_final_tvStep"
             android:textColor="@android:color/black"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:textAllCaps="true"
             android:padding="4dp" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
             android:id="@+id/list_final_tvTitle"

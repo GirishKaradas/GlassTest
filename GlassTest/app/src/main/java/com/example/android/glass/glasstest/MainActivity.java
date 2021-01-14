@@ -53,7 +53,6 @@ public class MainActivity extends BaseActivity {
     public boolean onGesture(Gesture gesture) {
         switch (gesture) {
             case TAP:
-
                 Intent intent = new Intent(MainActivity.this, MenuActivity.class);
                 intent.putExtra(MENU_KEY, R.menu.main_menu);
                 startActivityForResult(intent, REQUEST_CODE );
@@ -72,10 +71,10 @@ public class MainActivity extends BaseActivity {
             String selectedOption = "";
             switch (id) {
                 case R.id.bManual:
-                    selectedOption = getString(R.string.manual);
-                    startActivity(new Intent(this.getApplicationContext(), ManualActivity.class));
+                    selectedOption = getString(R.string.lyo_manual);
+                    startActivity(new Intent(this.getApplicationContext(), LyoManualActivity.class));
                     break;
-                case R.id.bMaintenance:
+         /*       case R.id.bMaintenance:
                     selectedOption = getString(R.string.lyo_manual);
                     startActivity(new Intent(this.getApplicationContext(), LyoManualActivity.class));
                     break;
@@ -87,8 +86,10 @@ public class MainActivity extends BaseActivity {
                     selectedOption = getString(R.string.video_call);
                  //   startActivity(new Intent(this.getApplicationContext(), MonitorActivity.class));
                     break;
+
+          */
             }
-            Toast.makeText(this.getApplicationContext(), selectedOption + " Activity Launching", Toast.LENGTH_SHORT)
+            Toast.makeText(this.getApplicationContext(),  "Opening "+selectedOption, Toast.LENGTH_SHORT)
                     .show();
         }
     }

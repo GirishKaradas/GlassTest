@@ -23,9 +23,9 @@
   <color name="dark_pink">#F85F6A</color>
   <color name="light_pink">#FFB3B1</color>
   
-  <color name="color_normal">#FFFF00</color>
-  <color name="color_critical">#FF0000</color>
-  <color name="color_camera">#F6B26B</color>
-  <color name="color_info">#6FA8DC</color>
+  <color name="color_normal">#1ce663</color>
+  <color name="color_critical">#e61c3a</color>
+  <color name="color_camera">#e6c81c</color>
+  <color name="color_info">#1c9fe6</color>
 
 </resources>
