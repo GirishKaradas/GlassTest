@@ -142,10 +142,10 @@ public class ManualActivity extends BaseActivity {
             final int id = data.getIntExtra(MenuActivity.EXTRA_MENU_ITEM_ID_KEY,
                     MenuActivity.EXTRA_MENU_ITEM_DEFAULT_VALUE);
             switch (id) {
-                case R.id.bWebrtc:
+                case R.id.bVideoCall2:
                     startActivity(new Intent(this.getApplicationContext(), VideoCallActivity.class));
                     break;
-                case R.id.bAgora:
+                case R.id.bAgora2:
                     startActivity(new Intent(this.getApplicationContext(), AgoraActivity.class));
                     break;
             }

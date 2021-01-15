@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import android.content.Intent;
+import android.graphics.Camera;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -42,6 +43,8 @@ public class LyoManualActivity extends BaseActivity {
     private TabLayout indicator;
     private ArrayList<DataLyo> arrayList = new ArrayList<>();
     private TextView textView;
+    public static Boolean FLAG5 = false;
+    public static Boolean FLAG8 = false;
 
     private final String ACCESS_TOKEN="tbYF8iyCGtF0CNgErPrRdU3LelybCwSXGWl5jA7nRoQ";
     private final String SPACE_ID= "kjy57u6y7jdo";
@@ -68,6 +71,23 @@ public class LyoManualActivity extends BaseActivity {
         textView = findViewById(R.id.activity_lyo_tvPage);
         arrayList = new ArrayList<>();
         indicator.setupWithViewPager(viewPager, true);
+
+        indicator.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                textView.setText((indicator.getSelectedTabPosition()+1) + " of "+ indicator.getTabCount());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
     }
 
@@ -132,26 +152,29 @@ public class LyoManualActivity extends BaseActivity {
         switch (gesture) {
             case TAP:
                 //    fragments.get(viewPager.getCurrentItem()).onSingleTapUp();
-           /*     Intent intent = new Intent(LyoManualActivity.this, MenuActivity.class);
-                intent.putExtra(MENU_KEY, R.menu.menu_call);
-                startActivityForResult(intent, REQUEST_CODE );
-                
-            */
-                if(viewPager.getCurrentItem()==0){
-                    Toast.makeText(this, "Step 0", Toast.LENGTH_SHORT).show();
-                }else if(viewPager.getCurrentItem()==5){
-                    Intent intent = new Intent(LyoManualActivity.this, CameraActivity.class);
-                    intent.putExtra("step", 5);
-                    startActivity(intent);
-                }else if(viewPager.getCurrentItem()==8){
-                    Intent intent = new Intent(LyoManualActivity.this, CameraActivity.class);
-                    intent.putExtra("step", 8);
-                    startActivity(intent);
-                }else{
-                    Toast.makeText(this, "Nothing", Toast.LENGTH_SHORT).show();
+                if(viewPager.getCurrentItem()==5 || viewPager.getCurrentItem()==8){
+                    Intent intent = new Intent(LyoManualActivity.this, MenuActivity.class);
+                    intent.putExtra(MENU_KEY, R.menu.menu_call_cam);
+                    startActivityForResult(intent, REQUEST_CODE);
+                }else if (viewPager.getCurrentItem() == 0){
+                    startActivity(new Intent(LyoManualActivity.this, TutorialActivity.class));
+                } else{
+                    Intent intent = new Intent(LyoManualActivity.this, MenuActivity.class);
+                    intent.putExtra(MENU_KEY, R.menu.menu_call);
+                    startActivityForResult(intent, REQUEST_CODE);
                 }
-                
                 return true;
+
+            case SWIPE_FORWARD:
+                if (viewPager.getCurrentItem()==5 && !FLAG5){
+                        Toast.makeText(this, getString(R.string.text_error), Toast.LENGTH_SHORT).show();
+                        return true;
+                }else if (viewPager.getCurrentItem()==8 && !FLAG8){
+                        Toast.makeText(this, getString(R.string.text_error), Toast.LENGTH_SHORT).show();
+                        return true;
+                }else {
+                    return super.onGesture(gesture);
+                }
             default:
                 return super.onGesture(gesture);
         }
@@ -164,11 +187,16 @@ public class LyoManualActivity extends BaseActivity {
             final int id = data.getIntExtra(MenuActivity.EXTRA_MENU_ITEM_ID_KEY,
                     MenuActivity.EXTRA_MENU_ITEM_DEFAULT_VALUE);
             switch (id) {
-                case R.id.bWebrtc:
-                //    startActivity(new Intent(this.getApplicationContext(), VideoCallActivity.class));
+                case R.id.bCamera2:
+                    Intent intent = new Intent(this.getApplicationContext(), CameraActivity.class);
+                    intent.putExtra("step", viewPager.getCurrentItem());
+                    startActivity(intent);
                     break;
-                case R.id.bAgora:
-                  //  startActivity(new Intent(this.getApplicationContext(), AgoraActivity.class));
+                case R.id.bAgora2:
+                    startActivity(new Intent(this.getApplicationContext(), AgoraActivity.class));
+                    break;
+                case R.id.bVideoCall2:
+                    startActivity(new Intent(this.getApplicationContext(), VideoCallActivity.class));
                     break;
             }
         }

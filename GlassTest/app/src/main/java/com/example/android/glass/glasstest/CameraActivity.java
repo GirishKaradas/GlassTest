@@ -110,6 +110,11 @@ public class CameraActivity extends BaseActivity {
                             if (task.isSuccessful()) {
                                 Uri uri1 = task.getResult();
                                 ref2.setValue(new DataRecord(key, now.toString(), uri1.toString()));
+                                if (step == 5){
+                                    LyoManualActivity.FLAG5 = true;
+                                }else if (step == 8){
+                                    LyoManualActivity.FLAG8 = true;
+                                }
                                 finish();
                                 Toast.makeText(CameraActivity.this, "image Upload Succesfull", Toast.LENGTH_SHORT).show();
                             } else {

@@ -220,8 +220,6 @@ public class VideoCallActivity extends BaseActivity implements  Session.SessionL
     @Override
     public void onDisconnected(Session session) {
         Log.i(LOG_TAG, "Session Disconnected");
-        mSubscriber.destroy();
-        mPublisher.destroy();
         ref_session.setValue("");
     }
 
@@ -285,6 +283,7 @@ public class VideoCallActivity extends BaseActivity implements  Session.SessionL
                 }else {
                     mSession.disconnect();
                     ref_session.setValue("");
+                    finish();
                 }
                 break;
 

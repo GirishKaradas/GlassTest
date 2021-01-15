@@ -74,20 +74,18 @@ public class MainActivity extends BaseActivity {
                     selectedOption = getString(R.string.lyo_manual);
                     startActivity(new Intent(this.getApplicationContext(), LyoManualActivity.class));
                     break;
-         /*       case R.id.bMaintenance:
-                    selectedOption = getString(R.string.lyo_manual);
-                    startActivity(new Intent(this.getApplicationContext(), LyoManualActivity.class));
-                    break;
                 case R.id.bMonitor:
                     selectedOption = getString(R.string.monitor);
                     startActivity(new Intent(this.getApplicationContext(), MonitorActivity.class));
                     break;
                 case R.id.bVideoCall:
                     selectedOption = getString(R.string.video_call);
-                 //   startActivity(new Intent(this.getApplicationContext(), MonitorActivity.class));
+                    startActivity(new Intent(this.getApplicationContext(), VideoCallActivity.class));
                     break;
-
-          */
+                case R.id.bFirebase:
+                    selectedOption = getString(R.string.tap_count);
+                    startActivity(new Intent(this.getApplicationContext(), WebCallActivity.class));
+                    break;
             }
             Toast.makeText(this.getApplicationContext(),  "Opening "+selectedOption, Toast.LENGTH_SHORT)
                     .show();
